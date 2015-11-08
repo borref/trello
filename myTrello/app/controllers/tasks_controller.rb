@@ -5,9 +5,9 @@ class TasksController < ApplicationController
 
   def index
     @tasks = Task.all
-    @available_tasks = Task.where("due_date > ? AND finished = ?", Date.today, false).order("due_date")
-    @overdue_tasks = Task.where("due_date < ? AND finished = ?", Date.today, false).order("due_date")
-    @finished_tasks = Task.where("finished = ?", true).order("due_date")
+    @available_tasks = Task.where("due_date > ? AND finished = ?", Date.today, false).order("due_date desc")
+    @overdue_tasks = Task.where("due_date < ? AND finished = ?", Date.today, false).order("due_date desc")
+    @finished_tasks = Task.where("finished = ?", true).order("due_date desc")
     
     respond_with(@tasks)  
   end
