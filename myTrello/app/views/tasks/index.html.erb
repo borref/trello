@@ -1,5 +1,6 @@
 <h1>Listing tasks</h1>
 
+<h2>All tasks</h2>
 <table>
   <thead>
     <tr>
@@ -8,7 +9,7 @@
       <th>Duration</th>
       <th>Start date</th>
       <th>End date</th>
-      <th>Checked</th>
+      <th>Finished</th>
       <th>User</th>
       <th colspan="3"></th>
     </tr>
@@ -21,8 +22,107 @@
         <td><%= task.description %></td>
         <td><%= task.duration %></td>
         <td><%= task.start_date %></td>
-        <td><%= task.end_date %></td>
-        <td><%= task.checked %></td>
+        <td><%= task.due_date %></td>
+        <td><%= task.finished %></td>
+        <td><%= task.user %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Available tasks</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Duration</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Finished</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @available_tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.description %></td>
+        <td><%= task.duration %></td>
+        <td><%= task.start_date %></td>
+        <td><%= task.due_date %></td>
+        <td><%= task.finished %></td>
+        <td><%= task.user %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Overdue tasks</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Duration</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Finished</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @overdue_tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.description %></td>
+        <td><%= task.duration %></td>
+        <td><%= task.start_date %></td>
+        <td><%= task.due_date %></td>
+        <td><%= task.finished %></td>
+        <td><%= task.user %></td>
+        <td><%= link_to 'Show', task %></td>
+        <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>Finished tasks</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Duration</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Finished</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @finished_tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.description %></td>
+        <td><%= task.duration %></td>
+        <td><%= task.start_date %></td>
+        <td><%= task.due_date %></td>
+        <td><%= task.finished %></td>
         <td><%= task.user %></td>
         <td><%= link_to 'Show', task %></td>
         <td><%= link_to 'Edit', edit_task_path(task) %></td>
