@@ -1,39 +1,39 @@
-<p id="notice"><%= notice %></p>
+<div class="ui one column stackable center aligned page grid">
+  <div class="column twelve wide">
+    <div class="ui stacked segment">
+      <h2 class="ui dividing header"><%= @task.title %></h2>
+      
+      <div class="clearfix line">
+        <span class="title">Description</span>
+        <span class="value"><%= @task.description %></span>
+      </div>
 
-<p>
-  <strong>Title:</strong>
-  <%= @task.title %>
-</p>
+      <div class="clearfix line">
+        <span class="title">Duration</span>
+        <span class="value"><%= @task.duration %> hours</span>
+      </div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @task.description %>
-</p>
+      <div class="clearfix line">
+        <span class="title">Start date</span>
+        <span class="value"><%= @task.start_date %></span>
+      </div>
 
-<p>
-  <strong>Duration:</strong>
-  <%= @task.duration %>
-</p>
+      <div class="clearfix line">
+        <span class="title">Due date</span>
+        <span class="value"><%= @task.due_date %></span>
+      </div>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @task.start_date %>
-</p>
+      <div class="clearfix line">
+        <span class="title">Finished?</span>
+        <% if @task.finished %>
+          <span class="value">Yes</span>
+        <% else %>
+          <span class="value">No</span>
+        <% end %>
+      </div>
+    </div>  
+  </div>  
+</div>
 
-<p>
-  <strong>Due date:</strong>
-  <%= @task.due_date %>
-</p>
-
-<p>
-  <strong>Finished:</strong>
-  <%= @task.finished %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @task.user %>
-</p>
-
-<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Edit', edit_task_path(@task) %> 
 <%= link_to 'Back', tasks_path %>

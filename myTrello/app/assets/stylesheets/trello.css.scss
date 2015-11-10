@@ -1,0 +1,90 @@
+// These are my custom rules for the app
+
+// Colors
+
+$bg-tasks-board: rgba(226, 228, 230, 0.2);
+
+// Generic rules
+
+.clearfix {
+  content:"";
+  display:table;
+  clear:both;
+}
+
+a:hover {
+	background-color: transparent;
+}
+
+// Devise view rules
+.devise-view {
+	background: url(bg_landscape.png) fixed;
+	background-size: cover;
+	min-height: 100%;
+	padding-top: 6%;
+
+	h1.header {
+		color: rgba(0, 0, 0, 0.58);
+		margin-bottom: 1.5em;
+	}
+
+	.ui.segment {
+		background: rgba(255, 255, 255, 0.7);
+
+		.header {
+			margin: 1em 0;
+		}
+
+		.form .field{
+			text-align: left;
+
+			label {
+				cursor: pointer;
+				font-weight: bold;
+			}
+		}
+	}
+}
+
+// Tasks
+
+#tasks>h2{
+	margin-bottom: 2em;
+}
+
+.tasks.container {
+	margin-top: 80px;
+}
+
+.tasks-board {
+	background-color: $bg-tasks-board !important;
+
+	a {
+		display: block;
+	}
+}
+
+.tasks-board .top.attached.label a:first-child {
+	position: absolute;
+	right: 3px;
+	top: 3px;
+}
+
+.tasks .stacked.segment .line {
+  width: 100%;
+
+  .title, .value {
+  	display: inline-block;
+	  float: left;
+	  padding: 10px;
+  }
+
+  .title {
+  	font-weight: bold;
+	  width: 25%;
+  }
+
+  .value {
+  	width: 75%;	
+  }
+}

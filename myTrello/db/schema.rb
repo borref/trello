@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20151107204810) do
   create_table "tasks", force: true do |t|
     t.string   "title",                       null: false
     t.string   "description"
-    t.time     "duration",                    null: false
+    t.integer  "duration",                    null: false
     t.date     "start_date",                  null: false
     t.date     "due_date",                    null: false
     t.boolean  "finished",    default: false

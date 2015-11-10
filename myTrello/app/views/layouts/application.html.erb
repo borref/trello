@@ -2,13 +2,34 @@
 <html>
 <head>
   <title>MyTrello</title>
+  <meta content="initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" name="viewport"/>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+	<nav class="ui inverted fixed menu">
+    <%= link_to 'Trello', tasks_path, {:class => 'item'} %>
+    <div class="right menu">
+      <% if user_signed_in? %>
+        <div class="item">
+          <%= link_to current_user.email, edit_user_registration_path, {:class => 'ui blue button'} %>
+        </div>
+        <div class="item">
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+        </div>
+      <% else %>
+        <div class="item">
+          <%= link_to "Sign Up", new_user_registration_path, {:class => 'ui blue button'} %>
+        </div>
+        <div class="item">
+          <%= link_to "Sign In", new_user_session_path, {:class => 'ui inverted grey button'} %>
+        </div>
+      <% end %>
+    </div>
+  </nav>
+	<div class="ui tasks container">
+		<%= yield %>	
+	</div>
 </body>
 </html>

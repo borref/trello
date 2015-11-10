@@ -1,6 +1,11 @@
-<h1>Editing task</h1>
-
-<%= render 'form' %>
+<div class="ui one column stackable center aligned page grid">
+  <div class="column twelve wide">
+  	<h1>Editing task</h1>
+    <div class="ui stacked segment">
+    	<%= render 'form' %>
+    </div>  
+  </div>  
+</div>
 
 <%= link_to 'Show', @task %> |
 <%= link_to 'Back', tasks_path %>

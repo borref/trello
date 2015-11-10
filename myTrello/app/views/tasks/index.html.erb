@@ -1,138 +1,88 @@
-<h1>Listing tasks</h1>
+<div id="tasks">
+  <h2>Have you ever imagined such an easy way to get your tasks done?&nbsp;
+    <%= link_to 'Just create a new task...', new_task_path%>
+  </h2>
+  <div class="ui grid stackable">
+    <div class="ten wide column">
+      <div class="ui teal segment">
+        <h3 class="ui header">Not finished tasks</h3>
+        <div class="ui two column stackable grid">
+          <div class="column">
+            <div class="ui tasks-board segment">
+              <div class="ui top attached label"> Available tasks
+                <%= link_to new_task_path do%>
+                  <%= semantic_icon('circular plus') %>
+                <% end %>
+              </div>
+              <!-- <h3 class="ui header">Available tasks</h3> -->
+              <% unless @available_tasks.empty? %>
+                <% @available_tasks.each do |task| %>
+                  <%= link_to task do %>
+                    <div class="ui task segment">
+                      <h4 class="ui header"><%= task.title %>
+                        <div class="sub header"><%= task.user.username %></div>
+                      </h4>
+                      <div class="ui label">
+                        <%= semantic_icon('wait') %>
+                        <%= task.due_date %>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% else %>
+                <h4 class="ui header">There's no tasks,&nbsp;
+                  <%= link_to 'add one', new_task_path%>
+                </h4>
+              <% end %>
+            </div>
+          </div>
 
-<h2>All tasks</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Duration</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Finished</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+          <div class="column">
+            <div class="ui tasks-board segment">
+              <div class="ui top attached label">Overdue tasks</div>
+              <!-- <h3 class="ui header">Overdue tasks</h3> -->
+              <% @overdue_tasks.each do |task| %>
+                <%= link_to task do %>
+                  <div class="ui task segment">
+                    <h4 class="sub header"><%= task.title %>
+                      <div class="sub header"><%= task.user.username %></div>
+                    </h4>
+                    <div class="ui label">
+                      <%= semantic_icon('wait') %>
+                      <%= task.due_date %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="five wide column">
+      <div class="ui olive segment">
+        <h3 class="ui header">Finished tasks</h3>
+        <div class="ui one column grid">
+          <div class="column">
+            <% @finished_tasks.each do |task| %>
+              <%= link_to task do %>
+                <div class="ui task segment">
+                  <h4 class="ui header"><%= task.title %>
+                    <div class="sub header"><%= task.user.username %></div>
+                  </h4>
+                  <div class="ui label">
+                    <%= semantic_icon('wait') %>
+                    <%= task.due_date %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <tbody>
-    <% @tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.duration %></td>
-        <td><%= task.start_date %></td>
-        <td><%= task.due_date %></td>
-        <td><%= task.finished %></td>
-        <td><%= task.user %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h2>Available tasks</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Duration</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Finished</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @available_tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.duration %></td>
-        <td><%= task.start_date %></td>
-        <td><%= task.due_date %></td>
-        <td><%= task.finished %></td>
-        <td><%= task.user %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h2>Overdue tasks</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Duration</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Finished</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @overdue_tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.duration %></td>
-        <td><%= task.start_date %></td>
-        <td><%= task.due_date %></td>
-        <td><%= task.finished %></td>
-        <td><%= task.user %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<h2>Finished tasks</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Duration</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Finished</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @finished_tasks.each do |task| %>
-      <tr>
-        <td><%= task.title %></td>
-        <td><%= task.description %></td>
-        <td><%= task.duration %></td>
-        <td><%= task.start_date %></td>
-        <td><%= task.due_date %></td>
-        <td><%= task.finished %></td>
-        <td><%= task.user %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Task', new_task_path %>
-<%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+  
